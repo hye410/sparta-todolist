@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useDispatch } from "../context/todosContext";
 
-export default function AddTodo({ addTodo }) {
+export default function AddTodo() {
   const [todo, setTodo] = useState("");
+  const { dispatch } = useDispatch();
 
   const handleAddTodo = () => {
     setTodo("");
-    addTodo({ type: "add", id: crypto.randomUUID(), todo });
+    dispatch({ type: "add", id: crypto.randomUUID(), todo });
   };
   return (
     <div id="addTodo">

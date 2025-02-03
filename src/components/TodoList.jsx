@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useDispatch, useTodo } from "../context/todosContext";
 
-export default function TodoList({ todos, dispatch }) {
+export default function TodoList() {
+  const { todos } = useTodo();
+  const { dispatch } = useDispatch();
   const [isEditing, setIsEditing] = useState({});
   const [editTodo, setEditTodo] = useState({});
 

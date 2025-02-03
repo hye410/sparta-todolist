@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTodo } from "../context/todoContext";
 
-export default function TodoAdd() {
+export default function AddTodo() {
   const [todo, setTodo] = useState("");
   const { addTodo } = useTodo();
   const handleAddTodo = () => {

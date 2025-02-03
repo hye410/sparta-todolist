@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "../redux/slices/todoSlice";
 import { useState } from "react";
 
-export default function TodoList({ data }) {
+export default function TodoList({ todos }) {
   const [isEditing, setIsEditing] = useState({});
   const [editTodo, setEditTodo] = useState({});
 
@@ -24,21 +24,21 @@ export default function TodoList({ data }) {
 
   return (
     <ul id="todoList">
-      {data.map((_data) => (
-        <li key={`todoList_${_data.id}`}>
-          {_data.todo}
-          {isEditing[_data.id] && (
+      {todos.map((todo) => (
+        <li key={`todoList_${todo.id}`}>
+          {todo.todo}
+          {isEditing[todo.id] && (
             <input
-              value={editTodo[_data.id] || ""}
-              onChange={(e) => setEditTodo({ [_data.id]: e.target.value })}
+              value={editTodo[todo.id] || ""}
+              onChange={(e) => setEditTodo({ [todo.id]: e.target.value })}
             />
           )}
           <div>
-            <button onClick={() => handleEdit(_data.id)}>
-              {isEditing[_data.id] ? "완료" : "수정"}
+            <button onClick={() => handleEdit(todo.id)}>
+              {isEditing[todo.id] ? "완료" : "수정"}
             </button>
             <button
-              value={_data.id}
+              value={todo.id}
               onClick={(e) => handleDelete(e.target.value)}
             >
               삭제

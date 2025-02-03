@@ -1,20 +1,18 @@
-import { useDispatch } from "react-redux";
-import { deleteTodo, updateTodo } from "../redux/slices/todoSlice";
 import { useState } from "react";
+import { useTodo } from "../context/todoContext";
 
-export default function TodoList({ data }) {
+export default function TodoList() {
+  const { todos: data, deleteTodo, updateTodo } = useTodo();
   const [isEditing, setIsEditing] = useState({});
   const [editTodo, setEditTodo] = useState({});
 
-  const dispatch = useDispatch();
-
   const handleDelete = (deletedTarget) => {
-    dispatch(deleteTodo(deletedTarget));
+    deleteTodo(deletedTarget);
   };
 
   const handleEdit = (id) => {
     if (isEditing[id]) {
-      dispatch(updateTodo(editTodo));
+      updateTodo(editTodo);
       setIsEditing({ [id]: false });
       delete editTodo[id];
     } else {
@@ -24,7 +22,7 @@ export default function TodoList({ data }) {
 
   return (
     <ul id="todoList">
-      {data.map((_data) => (
+      {data?.map((_data) => (
         <li key={`todoList_${_data.id}`}>
           {_data.todo}
           {isEditing[_data.id] && (

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTodo } from "../redux/slices/todoSlice";
+import { useTodo } from "../context/todoContext";
 
 export default function TodoAdd() {
   const [todo, setTodo] = useState("");
-  const dispatch = useDispatch();
+  const { addTodo } = useTodo();
   const handleAddTodo = () => {
-    dispatch(addTodo({ id: crypto.randomUUID(), todo }));
+    addTodo({ id: crypto.randomUUID(), todo });
     setTodo("");
   };
   return (
@@ -15,7 +14,7 @@ export default function TodoAdd() {
         Todo :
         <input value={todo} onChange={(e) => setTodo(e.target.value)} />
       </label>
-      <button onClick={handleAddTodo}>Add</button>
+      <button onClick={handleAddTodo}>추가</button>
     </div>
   );
 }

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useTodo } from "../context/todoContext";
 
-export default function TodoAdd() {
+export default function AddTodo({ addTodo }) {
   const [todo, setTodo] = useState("");
-  const { addTodo } = useTodo();
+
   const handleAddTodo = () => {
-    addTodo({ id: crypto.randomUUID(), todo });
     setTodo("");
+    addTodo({ type: "add", id: crypto.randomUUID(), todo });
   };
   return (
     <div id="addTodo">

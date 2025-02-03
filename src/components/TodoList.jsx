@@ -1,18 +1,22 @@
 import { useState } from "react";
-import { useTodo } from "../context/todoContext";
 
-export default function TodoList() {
-  const { todos: data, deleteTodo, updateTodo } = useTodo();
+export default function TodoList({ todos, dispatch }) {
   const [isEditing, setIsEditing] = useState({});
   const [editTodo, setEditTodo] = useState({});
 
   const handleDelete = (deletedTarget) => {
-    deleteTodo(deletedTarget);
+    dispatch({
+      type: "delete",
+      id: deletedTarget,
+    });
   };
 
   const handleEdit = (id) => {
     if (isEditing[id]) {
-      updateTodo(editTodo);
+      dispatch({
+        type: "edit",
+        ...editTodo,
+      });
       setIsEditing({ [id]: false });
       delete editTodo[id];
     } else {
@@ -22,21 +26,21 @@ export default function TodoList() {
 
   return (
     <ul id="todoList">
-      {data?.map((_data) => (
-        <li key={`todoList_${_data.id}`}>
-          {_data.todo}
-          {isEditing[_data.id] && (
+      {todos?.map((todo) => (
+        <li key={`todoList_${todo.id}`}>
+          {todo.todo}
+          {isEditing[todo.id] && (
             <input
-              value={editTodo[_data.id] || ""}
-              onChange={(e) => setEditTodo({ [_data.id]: e.target.value })}
+              value={editTodo[todo.id] || ""}
+              onChange={(e) => setEditTodo({ [todo.id]: e.target.value })}
             />
           )}
           <div>
-            <button onClick={() => handleEdit(_data.id)}>
-              {isEditing[_data.id] ? "완료" : "수정"}
+            <button onClick={() => handleEdit(todo.id)}>
+              {isEditing[todo.id] ? "완료" : "수정"}
             </button>
             <button
-              value={_data.id}
+              value={todo.id}
               onClick={(e) => handleDelete(e.target.value)}
             >
               삭제

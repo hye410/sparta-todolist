@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useDispatch, useTodo } from "../context/todosContext";
+import { useTodo } from "../context/useTodo";
+import { useDispatch } from "../context/useDispatch";
 
 export default function TodoList() {
   const { todos } = useTodo();

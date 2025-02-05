@@ -1,8 +1,7 @@
-import { createContext, useContext, useReducer } from "react";
+import { useReducer } from "react";
 import TodoReducer from "../reducer/todoReducer";
-
-const TodosContext = createContext(null);
-const TodosDispatchContext = createContext(null);
+import { TodosContext } from "./useTodo";
+import { TodosDispatchContext } from "./useDispatch";
 
 export const TodosProvider = ({ children }) => {
   const [todos, dispatch] = useReducer(TodoReducer, []);
@@ -14,16 +13,4 @@ export const TodosProvider = ({ children }) => {
       </TodosDispatchContext.Provider>
     </TodosContext.Provider>
   );
-};
-
-export const useTodo = () => {
-  const context = useContext(TodosContext);
-  if (!context) throw new Error("error");
-  return context;
-};
-
-export const useDispatch = () => {
-  const context = useContext(TodosDispatchContext);
-  if (!context) throw new Error("error");
-  return context;
 };

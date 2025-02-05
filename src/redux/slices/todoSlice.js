@@ -1,23 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-  // {
-  //   id: crypto.randomUUID(),
-  //   todo: "독서",
-  // },
-  // {
-  //   id: crypto.randomUUID(),
-  //   todo: "주식 방송 챙겨보기",
-  // },
-  // {
-  //   id: crypto.randomUUID(),
-  //   todo: "코딩하기",
-  // },
-];
-
 const todoSlice = createSlice({
   name: "todos",
-  initialState,
+  initialState: [],
   reducers: {
     addTodo: (state, action) => {
       state.push(action.payload);

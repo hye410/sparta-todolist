@@ -15,7 +15,7 @@ export default function AddTodo() {
         Todo :
         <input value={todo} onChange={(e) => setTodo(e.target.value)} />
       </label>
-      <button onClick={handleAddTodo}>Add</button>
+      <button onClick={handleAddTodo}>추가</button>
     </div>
   );
 }

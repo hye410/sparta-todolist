@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTodo } from "../context/todoContext";
+import { useTodo } from "../context/useTodo";
 
 export default function AddTodo() {
   const [todo, setTodo] = useState("");

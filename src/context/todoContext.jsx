@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { useState } from "react";
+import { TodosContext } from "./useTodo";
 
-const TodoContext = createContext(null);
+// const TodoContext = createContext(null);
 
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
@@ -24,14 +25,14 @@ export const TodoProvider = ({ children }) => {
   };
 
   return (
-    <TodoContext.Provider value={{ todos, addTodo, updateTodo, deleteTodo }}>
+    <TodosContext.Provider value={{ todos, addTodo, updateTodo, deleteTodo }}>
       {children}
-    </TodoContext.Provider>
+    </TodosContext.Provider>
   );
 };
 
-export const useTodo = () => {
-  const context = useContext(TodoContext);
-  if (!context) throw new Error("");
-  return context;
-};
+// export const useTodo = () => {
+//   const context = useContext(TodoContext);
+//   if (!context) throw new Error("");
+//   return context;
+// };

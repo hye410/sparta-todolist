@@ -1,6 +1,6 @@
 import TodoList from "./TodoList";
 import "../App.css";
-import { useTodo } from "../context/todoContext";
+import { useTodo } from "../context/useTodo";
 import AddTodo from "./AddTodo";
 
 function App() {
